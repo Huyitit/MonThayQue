@@ -1,0 +1,93 @@
+{
+  "application": "Application 3: E-Commerce Customer Behavior (Interest Discovery)",
+  "domain": "E-Commerce Customer Product Interest Discovery & Personalization",
+  "course": "Intelligence Systems (Year 4, Semester 1)",
+  "assignment": "Assignment 02 — From Data Representation to a Deployable Intelligent System",
+  "stage": 3,
+  "created_at": "2026-09-07 21:27:29",
+  "champion_model": "Multimodal Logistic Regression with L2 Regularization",
+  "model_family": "Linear Classification (Multinomial Softmax)",
+  "hyperparameters": {
+    "C": 1.0,
+    "max_iter": 500,
+    "class_weight": "balanced",
+    "penalty": "l2",
+    "solver": "lbfgs",
+    "random_state": 42
+  },
+  "preprocessing": {
+    "text_vectorizer": {
+      "method": "TfidfVectorizer",
+      "max_features": 2500,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "sublinear_tf": true,
+      "stop_words": "english",
+      "min_df": 2
+    },
+    "tabular_scaler": {
+      "method": "StandardScaler",
+      "with_mean": true,
+      "with_std": true
+    }
+  },
+  "input_features": {
+    "raw_numerical": [
+      "Age",
+      "Rating",
+      "Recommended IND",
+      "Positive Feedback Count"
+    ],
+    "raw_text": [
+      "Title",
+      "Review Text"
+    ],
+    "engineered_tabular": [
+      "review_length",
+      "word_count",
+      "log_positive_feedback",
+      "uppercase_ratio",
+      "has_title"
+    ],
+    "model_tabular_features": [
+      "Age",
+      "Rating",
+      "Recommended IND",
+      "log_positive_feedback",
+      "word_count",
+      "review_length"
+    ],
+    "total_raw_count": 6
+  },
+  "transformed_feature_dimension": {
+    "text_dimension": 2500,
+    "tabular_dimension": 6,
+    "total_combined_dimension": 2506
+  },
+  "target": {
+    "name": "Department Name",
+    "type": "Multimodal Multi-Class Classification",
+    "num_classes": 5,
+    "classes": [
+      "Bottoms",
+      "Dresses",
+      "Intimate",
+      "Jackets",
+      "Tops"
+    ]
+  },
+  "metrics": {
+    "cv_macro_f1": 0.7323129079628974,
+    "test_macro_f1": 0.7485975331888179,
+    "test_accuracy_pct": 82.007996446024,
+    "test_weighted_f1": 0.8262804551804819,
+    "test_macro_recall": 0.7916861864379546,
+    "test_macro_precision": 0.7225517838687328,
+    "generalization_gap": 0.016284625225920557,
+    "inference_latency_ms_est": 0.45
+  },
+  "serialization_framework": "joblib",
+  "scikit_learn_version": "1.5.3"
+}

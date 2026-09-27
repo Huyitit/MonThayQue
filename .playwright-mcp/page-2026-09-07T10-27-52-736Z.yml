@@ -1,0 +1,83 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: Intelligent System · Stage 4 Deployment
+      - heading "RetailSense AI" [level=1] [ref=e6]
+      - paragraph [ref=e7]: E-Commerce Multimodal Customer Behavior & Department Interest Discovery
+    - generic [ref=e8]: API Connected
+  - region "Customer Profile Presets" [ref=e11]:
+    - generic [ref=e12]: "⚡ Quick Presets:"
+    - generic [ref=e13]:
+      - button "👗 Dresses Fanatic" [ref=e14] [cursor=pointer]
+      - button "👖 Denim & Bottoms" [ref=e15] [cursor=pointer]
+      - button "🧥 Winter Outerwear" [ref=e16] [cursor=pointer]
+      - button "👙 Intimates & Sleep" [ref=e17] [cursor=pointer]
+      - button "👚 Summer Blouse" [ref=e18] [cursor=pointer]
+  - main [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - heading "Customer Engagement & Review" [level=2] [ref=e22]
+        - paragraph [ref=e23]: Provide customer demographics, feedback signals, and textual review data.
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - generic [ref=e27]: Customer Age
+            - generic [ref=e28]:
+              - spinbutton "Customer Age" [ref=e29]: "32"
+              - generic: years
+            - generic [ref=e30]: Demographic age bracket (18-100)
+          - generic [ref=e31]:
+            - generic [ref=e32]: Product Rating
+            - combobox "Product Rating" [ref=e34] [cursor=pointer]:
+              - option "★★★★★ (5 - Excellent)" [selected]
+              - option "★★★★☆ (4 - Very Good)"
+              - option "★★★☆☆ (3 - Average)"
+              - option "★★☆☆☆ (2 - Poor)"
+              - option "★☆☆☆☆ (1 - Terrible)"
+            - generic [ref=e35]: Customer satisfaction rating
+          - generic [ref=e36]:
+            - generic [ref=e37]: Recommendation
+            - combobox "Recommendation" [ref=e39] [cursor=pointer]:
+              - option "👍 Yes (Recommends item)" [selected]
+              - option "👎 No (Does not recommend)"
+            - generic [ref=e40]: Willingness to recommend
+          - generic [ref=e41]:
+            - generic [ref=e42]: Helpful Upvotes
+            - generic [ref=e43]:
+              - spinbutton "Helpful Upvotes" [ref=e44]: "4"
+              - generic: votes
+            - generic [ref=e45]: Community upvotes on review
+        - generic [ref=e46]:
+          - generic [ref=e47]:
+            - generic [ref=e48]: Review Headline / Title
+            - textbox "Review Headline / Title" [ref=e50]:
+              - /placeholder: e.g. Gorgeous fit and lovely color
+              - text: Stunning summer maxi dress
+            - generic [ref=e51]: Summary headline (optional but provides NLP signal)
+          - generic [ref=e52]:
+            - generic [ref=e53]:
+              - generic [ref=e54]: Review Narrative *
+              - generic [ref=e55]: 14 words · 86 chars
+            - textbox "Review Narrative *" [ref=e57]:
+              - /placeholder: Write customer feedback, style observations, fit notes, fabric comments...
+              - text: This dress fits like a glove! Beautiful floral fabric and perfect length for weddings.
+            - generic [ref=e58]: Unstructured customer text processed by TF-IDF sublinear vectorizer
+        - button "Discover Product Interest" [ref=e60] [cursor=pointer]
+    - generic [ref=e62]:
+      - generic [ref=e63]:
+        - heading "Interest Discovery & Profiling" [level=2] [ref=e64]
+        - generic [ref=e65]: Multimodal LR Champion
+      - generic [ref=e66]:
+        - generic [ref=e67]: 🛍️
+        - paragraph [ref=e68]: Submit customer review and engagement metrics on the left to classify product interest and behavioral persona.
+  - contentinfo [ref=e69]:
+    - paragraph [ref=e70]: "Intelligence System Development · Assignment 02 · Application 3: E-Commerce Customer Behavior"
+    - generic [ref=e71]:
+      - link "Interactive Swagger Docs (OpenAPI)" [ref=e72] [cursor=pointer]:
+        - /url: /docs
+      - generic [ref=e73]: ·
+      - link "API Healthcheck" [ref=e74] [cursor=pointer]:
+        - /url: /health
+      - generic [ref=e75]: ·
+      - link "Model Metadata" [ref=e76] [cursor=pointer]:
+        - /url: /model-info

@@ -1,0 +1,81 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: Intelligent System · Stage 4 Deployment
+      - heading "GlucoPredict AI" [level=1] [ref=e6]
+      - paragraph [ref=e7]: Type 2 Diabetes Clinical Risk Classification & Decision Support
+    - generic [ref=e8]: API Connected
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - heading "Patient Clinical Measurements" [level=2] [ref=e14]
+        - paragraph [ref=e15]: Enter patient physiological and demographic parameters below.
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - generic [ref=e18]:
+            - generic [ref=e19]: Pregnancies
+            - generic [ref=e20]:
+              - spinbutton "Pregnancies" [ref=e21]: "1"
+              - generic: count
+            - generic [ref=e22]: Number of times pregnant
+          - generic [ref=e23]:
+            - generic [ref=e24]: Glucose Concentration
+            - generic [ref=e25]:
+              - spinbutton "Glucose Concentration" [ref=e26]: "120"
+              - generic: mg/dL
+            - generic [ref=e27]: 2-hr oral glucose tolerance test
+          - generic [ref=e28]:
+            - generic [ref=e29]: Diastolic Blood Pressure
+            - generic [ref=e30]:
+              - spinbutton "Diastolic Blood Pressure" [ref=e31]: "70"
+              - generic: mm Hg
+            - generic [ref=e32]: Diastolic resting pressure
+          - generic [ref=e33]:
+            - generic [ref=e34]: Skin Fold Thickness
+            - generic [ref=e35]:
+              - spinbutton "Skin Fold Thickness" [ref=e36]: "20"
+              - generic: mm
+            - generic [ref=e37]: Triceps skin fold caliper measure
+          - generic [ref=e38]:
+            - generic [ref=e39]: 2-Hour Serum Insulin
+            - generic [ref=e40]:
+              - spinbutton "2-Hour Serum Insulin" [ref=e41]: "79"
+              - generic: μU/mL
+            - generic [ref=e42]: 2-Hour post-load serum insulin
+          - generic [ref=e43]:
+            - generic [ref=e44]: Body Mass Index (BMI)
+            - generic [ref=e45]:
+              - spinbutton "Body Mass Index (BMI)" [ref=e46]: "25.0"
+              - generic: kg/m²
+            - generic [ref=e47]: Weight in kg / (Height in m)²
+          - generic [ref=e48]:
+            - generic [ref=e49]: Diabetes Pedigree Function
+            - generic [ref=e50]:
+              - spinbutton "Diabetes Pedigree Function" [ref=e51]: "0.45"
+              - generic: score
+            - generic [ref=e52]: Genetic family history influence score
+          - generic [ref=e53]:
+            - generic [ref=e54]: Patient Age
+            - generic [ref=e55]:
+              - spinbutton "Patient Age" [ref=e56]: "30"
+              - generic: years
+            - generic [ref=e57]: Chronological age
+        - button "Execute Clinical Assessment" [ref=e59] [cursor=pointer]
+    - generic [ref=e61]:
+      - generic [ref=e62]:
+        - heading "Inference Result & Assessment" [level=2] [ref=e63]
+        - generic [ref=e64]: Random Forest Classifier Champion
+      - generic [ref=e65]:
+        - generic [ref=e66]: 🩺
+        - paragraph [ref=e67]: Submit patient measurements on the left to evaluate clinical diabetes risk.
+  - contentinfo [ref=e68]:
+    - paragraph [ref=e69]: "Intelligence System Development · Assignment 02 · Application 1: Diabetes Prediction"
+    - generic [ref=e70]:
+      - link "Interactive Swagger Docs (OpenAPI)" [ref=e71] [cursor=pointer]:
+        - /url: /docs
+      - generic [ref=e72]: ·
+      - link "API Healthcheck" [ref=e73] [cursor=pointer]:
+        - /url: /health
+      - generic [ref=e74]: ·
+      - link "Model Metadata" [ref=e75] [cursor=pointer]:
+        - /url: /model-info

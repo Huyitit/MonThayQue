@@ -1,0 +1,35 @@
+{
+  "application": "Application 1: Diabetes Prediction",
+  "assignment": "Assignment 02 \u2014 Intelligent Systems Lifecycle",
+  "champion_model": "Random Forest Classifier",
+  "hyperparameters": {
+    "n_estimators": 100,
+    "max_depth": 5,
+    "class_weight": "balanced",
+    "random_state": 42
+  },
+  "input_features": [
+    "Pregnancies",
+    "Glucose",
+    "BloodPressure",
+    "SkinThickness",
+    "Insulin",
+    "BMI",
+    "DiabetesPedigreeFunction",
+    "Age"
+  ],
+  "engineered_features": [
+    "Glucose_BMI_Interaction",
+    "Insulin_Glucose_Ratio"
+  ],
+  "total_feature_count": 10,
+  "metrics": {
+    "test_accuracy": 0.8312,
+    "test_precision": 0.7222,
+    "test_recall": 0.7647,
+    "test_f1": 0.7429,
+    "test_roc_auc": 0.88
+  },
+  "serialization_framework": "joblib",
+  "scikit_learn_version": "1.4.1.post1"
+}

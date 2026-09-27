@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diabetes Prediction System | Intelligent Systems</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="header-badge">Intelligent System · Stage 4 Deployment</div>
+        <h1 class="header-title">Diabetes Predict AI</h1>
+        <p class="header-subtitle">
+          Type 2 Diabetes Clinical Risk Classification & Decision Support
+        </p>
+      </div>
+      <div class="header-status">
+        <span class="status-indicator online" id="statusIndicator"></span>
+        <span class="status-text" id="statusText">Connecting API...</span>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="main-layout">
+      <!-- Input Form Card -->
+      <section class="card form-card">
+        <div class="card-header">
+          <h2>Patient Clinical Measurements</h2>
+          <p class="section-desc">Enter patient physiological and demographic parameters below.</p>
+        </div>
+
+        <form id="predictionForm" class="prediction-form" novalidate>
+          <div class="form-grid">
+            <!-- Pregnancies -->
+            <div class="form-group">
+              <label for="pregnancies">Pregnancies</label>
+              <div class="input-wrapper">
+                <input type="number" id="pregnancies" name="Pregnancies" min="0" max="20" step="1" value="1" placeholder="e.g. 1" required />
+                <span class="unit">count</span>
+              </div>
+              <small class="field-hint">Number of times pregnant</small>
+            </div>
+
+            <!-- Glucose -->
+            <div class="form-group">
+              <label for="glucose">Glucose Concentration</label>
+              <div class="input-wrapper">
+                <input type="number" id="glucose" name="Glucose" min="0" max="400" step="1" value="120" placeholder="e.g. 120" required />
+                <span class="unit">mg/dL</span>
+              </div>
+              <small class="field-hint">2-hr oral glucose tolerance test</small>
+            </div>
+
+            <!-- Blood Pressure -->
+            <div class="form-group">
+              <label for="bloodPressure">Diastolic Blood Pressure</label>
+              <div class="input-wrapper">
+                <input type="number" id="bloodPressure" name="BloodPressure" min="0" max="200" step="1" value="70" placeholder="e.g. 70" required />
+                <span class="unit">mm Hg</span>
+              </div>
+              <small class="field-hint">Diastolic resting pressure</small>
+            </div>
+
+            <!-- Skin Thickness -->
+            <div class="form-group">
+              <label for="skinThickness">Skin Fold Thickness</label>
+              <div class="input-wrapper">
+                <input type="number" id="skinThickness" name="SkinThickness" min="0" max="100" step="1" value="20" placeholder="e.g. 20" required />
+                <span class="unit">mm</span>
+              </div>
+              <small class="field-hint">Triceps skin fold caliper measure</small>
+            </div>
+
+            <!-- Insulin -->
+            <div class="form-group">
+              <label for="insulin">2-Hour Serum Insulin</label>
+              <div class="input-wrapper">
+                <input type="number" id="insulin" name="Insulin" min="0" max="900" step="1" value="79" placeholder="e.g. 79" required />
+                <span class="unit">μU/mL</span>
+              </div>
+              <small class="field-hint">2-Hour post-load serum insulin</small>
+            </div>
+
+            <!-- BMI -->
+            <div class="form-group">
+              <label for="bmi">Body Mass Index (BMI)</label>
+              <div class="input-wrapper">
+                <input type="number" id="bmi" name="BMI" min="0" max="80" step="0.1" value="25.0" placeholder="e.g. 25.0" required />
+                <span class="unit">kg/m²</span>
+              </div>
+              <small class="field-hint">Weight in kg / (Height in m)²</small>
+            </div>
+
+            <!-- Diabetes Pedigree Function -->
+            <div class="form-group">
+              <label for="dpf">Diabetes Pedigree Function</label>
+              <div class="input-wrapper">
+                <input type="number" id="dpf" name="DiabetesPedigreeFunction" min="0" max="3.0" step="0.01" value="0.45" placeholder="e.g. 0.45" required />
+                <span class="unit">score</span>
+              </div>
+              <small class="field-hint">Genetic family history influence score</small>
+            </div>
+
+            <!-- Age -->
+            <div class="form-group">
+              <label for="age">Patient Age</label>
+              <div class="input-wrapper">
+                <input type="number" id="age" name="Age" min="1" max="120" step="1" value="30" placeholder="e.g. 30" required />
+                <span class="unit">years</span>
+              </div>
+              <small class="field-hint">Chronological age</small>
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <div class="form-actions">
+            <button type="submit" id="submitBtn" class="btn-primary">
+              <span class="btn-text">Execute Clinical Assessment</span>
+              <span class="btn-loader spinner hidden" id="spinner"></span>
+            </button>
+          </div>
+        </form>
+
+        <div id="errorAlert" class="alert alert-error hidden">
+          <span class="alert-icon">⚠️</span>
+          <span id="errorMessage" class="alert-text"></span>
+        </div>
+      </section>
+
+      <!-- Prediction Result Card -->
+      <section class="card result-card" id="resultSection">
+        <div class="card-header">
+          <h2>Inference Result & Assessment</h2>
+          <span class="badge badge-model" id="modelBadge">Random Forest Champion</span>
+        </div>
+
+        <!-- Placeholder when no prediction run yet -->
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">🩺</div>
+          <p>Submit patient measurements on the left to evaluate clinical diabetes risk.</p>
+        </div>
+
+        <!-- Active Result View -->
+        <div class="result-content hidden" id="resultContent">
+          <!-- Primary Outcome Banner -->
+          <div class="outcome-banner" id="outcomeBanner">
+            <div class="outcome-header">
+              <span class="outcome-label">Diagnosis Prediction:</span>
+              <span class="risk-badge" id="riskLevelBadge">Low Risk</span>
+            </div>
+            <div class="outcome-classification" id="outcomeLabel">Non-Diabetic</div>
+          </div>
+
+          <!-- Confidence & Probability Metrics -->
+          <div class="metrics-container">
+            <div class="metric-box">
+              <div class="metric-label">Diabetic Probability</div>
+              <div class="metric-value" id="probabilityValue">0.0%</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar" id="probabilityBar" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <div class="metric-box">
+              <div class="metric-label">Model Confidence</div>
+              <div class="metric-value" id="confidenceValue">0.0%</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar confidence-bar" id="confidenceBar" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Clinical Interpretation -->
+          <div class="interpretation-box">
+            <h3>Clinical Interpretation</h3>
+            <p id="interpretationText">Awaiting evaluation...</p>
+          </div>
+
+          <!-- Domain Feature Engineering Breakdown -->
+          <div class="engineered-box">
+            <h3>Pipeline Feature Transformations</h3>
+            <div class="feature-pills">
+              <div class="pill">
+                <span class="pill-name">Glucose × BMI Synergy:</span>
+                <strong class="pill-val" id="glucoseBmiVal">0.0</strong>
+              </div>
+              <div class="pill">
+                <span class="pill-name">Insulin / Glucose Ratio:</span>
+                <strong class="pill-val" id="insulinGlucoseVal">0.0</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Intelligence System Development · Assignment 02 · Application 1: Diabetes Prediction</p>
+      <div class="api-links">
+        <a href="/docs" target="_blank" rel="noopener">Interactive Swagger Docs (OpenAPI)</a>
+        <span>·</span>
+        <a href="/health" target="_blank" rel="noopener">API Healthcheck</a>
+        <span>·</span>
+        <a href="/model-info" target="_blank" rel="noopener">Model Metadata</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

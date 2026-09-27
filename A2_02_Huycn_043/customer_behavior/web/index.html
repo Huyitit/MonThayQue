@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RetailSense AI | Customer Behavior & Product Interest Discovery</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="header-badge">Intelligent System · Stage 4 Deployment</div>
+        <h1 class="header-title">RetailSense AI</h1>
+        <p class="header-subtitle">
+          E-Commerce Multimodal Customer Behavior & Department Interest Discovery
+        </p>
+      </div>
+      <div class="header-status">
+        <span class="status-indicator online" id="statusIndicator"></span>
+        <span class="status-text" id="statusText">Connecting API...</span>
+      </div>
+    </header>
+
+    <!-- Quick Preset Selection Bar -->
+    <section class="presets-bar" aria-label="Customer Profile Presets">
+      <span class="presets-label">⚡ Quick Presets:</span>
+      <div class="preset-buttons">
+        <button type="button" class="btn-preset active" data-preset="dresses">👗 Dresses Fanatic</button>
+        <button type="button" class="btn-preset" data-preset="bottoms">👖 Denim & Bottoms</button>
+        <button type="button" class="btn-preset" data-preset="jackets">🧥 Winter Outerwear</button>
+        <button type="button" class="btn-preset" data-preset="intimate">👙 Intimates & Sleep</button>
+        <button type="button" class="btn-preset" data-preset="tops">👚 Summer Blouse</button>
+      </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <main class="main-layout">
+      <!-- Input Form Card -->
+      <section class="card form-card">
+        <div class="card-header">
+          <h2>Customer Engagement & Review</h2>
+          <p class="section-desc">Provide customer demographics, feedback signals, and textual review data.</p>
+        </div>
+
+        <form id="predictionForm" class="prediction-form" novalidate>
+          <!-- Demographics & Engagement Grid -->
+          <div class="form-grid">
+            <!-- Age -->
+            <div class="form-group">
+              <label for="age">Customer Age</label>
+              <div class="input-wrapper">
+                <input type="number" id="age" name="Age" min="18" max="100" step="1" value="32" placeholder="e.g. 32" required />
+                <span class="unit">years</span>
+              </div>
+              <small class="field-hint">Demographic age bracket (18-100)</small>
+            </div>
+
+            <!-- Rating -->
+            <div class="form-group">
+              <label for="rating">Product Rating</label>
+              <div class="input-wrapper">
+                <select id="rating" name="Rating" required>
+                  <option value="5" selected>★★★★★ (5 - Excellent)</option>
+                  <option value="4">★★★★☆ (4 - Very Good)</option>
+                  <option value="3">★★★☆☆ (3 - Average)</option>
+                  <option value="2">★★☆☆☆ (2 - Poor)</option>
+                  <option value="1">★☆☆☆☆ (1 - Terrible)</option>
+                </select>
+              </div>
+              <small class="field-hint">Customer satisfaction rating</small>
+            </div>
+
+            <!-- Recommendation IND -->
+            <div class="form-group">
+              <label for="recommendedInd">Recommendation</label>
+              <div class="input-wrapper">
+                <select id="recommendedInd" name="Recommended IND" required>
+                  <option value="1" selected>👍 Yes (Recommends item)</option>
+                  <option value="0">👎 No (Does not recommend)</option>
+                </select>
+              </div>
+              <small class="field-hint">Willingness to recommend</small>
+            </div>
+
+            <!-- Positive Feedback Count -->
+            <div class="form-group">
+              <label for="positiveFeedback">Helpful Upvotes</label>
+              <div class="input-wrapper">
+                <input type="number" id="positiveFeedback" name="Positive Feedback Count" min="0" max="500" step="1" value="4" placeholder="e.g. 4" required />
+                <span class="unit">votes</span>
+              </div>
+              <small class="field-hint">Community upvotes on review</small>
+            </div>
+          </div>
+
+          <!-- Text Inputs: Title and Review Narrative -->
+          <div class="text-inputs-section">
+            <div class="form-group full-width">
+              <label for="reviewTitle">Review Headline / Title</label>
+              <div class="input-wrapper">
+                <input type="text" id="reviewTitle" name="Title" value="Stunning summer maxi dress" placeholder="e.g. Gorgeous fit and lovely color" maxlength="200" />
+              </div>
+              <small class="field-hint">Summary headline (optional but provides NLP signal)</small>
+            </div>
+
+            <div class="form-group full-width">
+              <div class="label-with-counter">
+                <label for="reviewText">Review Narrative <span class="required">*</span></label>
+                <span class="char-counter" id="charCounter">0 words</span>
+              </div>
+              <div class="input-wrapper textarea-wrapper">
+                <textarea id="reviewText" name="Review Text" rows="4" placeholder="Write customer feedback, style observations, fit notes, fabric comments..." required>This dress fits like a glove! Beautiful floral fabric and perfect length for weddings.</textarea>
+              </div>
+              <small class="field-hint">Unstructured customer text processed by TF-IDF sublinear vectorizer</small>
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <div class="form-actions">
+            <button type="submit" id="submitBtn" class="btn-primary">
+              <span class="btn-text">Discover Product Interest</span>
+              <span class="btn-loader spinner hidden" id="spinner"></span>
+            </button>
+          </div>
+        </form>
+
+        <div id="errorAlert" class="alert alert-error hidden">
+          <span class="alert-icon">⚠️</span>
+          <span id="errorMessage" class="alert-text"></span>
+        </div>
+      </section>
+
+      <!-- Prediction Result Card -->
+      <section class="card result-card" id="resultSection">
+        <div class="card-header">
+          <h2>Interest Discovery & Profiling</h2>
+          <span class="badge badge-model" id="modelBadge">Multimodal LR Champion</span>
+        </div>
+
+        <!-- Empty State View -->
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">🛍️</div>
+          <p>Submit customer review and engagement metrics on the left to classify product interest and behavioral persona.</p>
+        </div>
+
+        <!-- Active Result View -->
+        <div class="result-content hidden" id="resultContent">
+          <!-- Primary Outcome Banner -->
+          <div class="outcome-banner" id="outcomeBanner">
+            <div class="outcome-header">
+              <span class="outcome-label">Predicted Interest Department:</span>
+              <span class="risk-badge" id="behaviorBadge">High-Intent Advocate</span>
+            </div>
+            <div class="department-display">
+              <span class="dept-icon" id="deptIcon">👗</span>
+              <span class="dept-name" id="predictedDept">Dresses</span>
+            </div>
+          </div>
+
+          <!-- Primary Confidence Gauge -->
+          <div class="metrics-container">
+            <div class="metric-box full-box">
+              <div class="metric-header-row">
+                <span class="metric-label">Model Confidence</span>
+                <span class="metric-value" id="confidenceValue">99.9%</span>
+              </div>
+              <div class="progress-bar-container">
+                <div class="progress-bar" id="confidenceBar" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Multi-Class Posterior Probability Distribution -->
+          <div class="distribution-box">
+            <h3>Department Probability Distribution</h3>
+            <p class="section-subtext">Multinomial Softmax posterior probabilities over all 5 departments:</p>
+            <div class="probability-bars" id="probBarsContainer">
+              <!-- Dynamically populated via app.js -->
+            </div>
+          </div>
+
+          <!-- Behavioral Personalization & Actionable Strategy -->
+          <div class="interpretation-box">
+            <h3>Personalized Retail Strategy</h3>
+            <p id="interpretationText">Awaiting customer classification...</p>
+          </div>
+
+          <!-- Domain Feature Engineering Breakdown -->
+          <div class="engineered-box">
+            <h3>Pipeline Feature Transformations</h3>
+            <div class="feature-pills">
+              <div class="pill">
+                <span class="pill-name">Word Count:</span>
+                <strong class="pill-val" id="wordCountVal">0</strong>
+              </div>
+              <div class="pill">
+                <span class="pill-name">Char Length:</span>
+                <strong class="pill-val" id="reviewLengthVal">0</strong>
+              </div>
+              <div class="pill">
+                <span class="pill-name">Log Upvotes:</span>
+                <strong class="pill-val" id="logFeedbackVal">0.0</strong>
+              </div>
+              <div class="pill">
+                <span class="pill-name">Uppercase Ratio:</span>
+                <strong class="pill-val" id="upperRatioVal">0.0%</strong>
+              </div>
+              <div class="pill">
+                <span class="pill-name">Has Title:</span>
+                <strong class="pill-val" id="hasTitleVal">Yes</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Intelligence System Development · Assignment 02 · Application 3: E-Commerce Customer Behavior</p>
+      <div class="api-links">
+        <a href="/docs" target="_blank" rel="noopener">Interactive Swagger Docs (OpenAPI)</a>
+        <span>·</span>
+        <a href="/health" target="_blank" rel="noopener">API Healthcheck</a>
+        <span>·</span>
+        <a href="/model-info" target="_blank" rel="noopener">Model Metadata</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

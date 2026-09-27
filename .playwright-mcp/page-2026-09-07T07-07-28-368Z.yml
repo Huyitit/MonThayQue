@@ -1,0 +1,147 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: Intelligent System · Stage 4 Deployment
+      - heading "HouseVal AI" [level=1] [ref=e6]
+      - paragraph [ref=e7]: Residential Real Estate Valuation & Decision Support (Vietnam)
+    - generic [ref=e8]: API Connected
+  - generic [ref=e11]:
+    - generic [ref=e12]: "⚡ Quick Presets:"
+    - generic [ref=e13]:
+      - button "HCMC Townhouse" [ref=e14] [cursor=pointer]
+      - button "Hanoi Suburban Villa" [ref=e15] [cursor=pointer]
+      - button "Bình Dương Rowhouse" [ref=e16] [cursor=pointer]
+  - main [ref=e17]:
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - heading "Property Specifications" [level=2] [ref=e20]
+        - paragraph [ref=e21]: Enter physical and geographical attributes of the residential listing.
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - generic [ref=e24]:
+            - generic [ref=e25]: Land / Lot Area
+            - generic [ref=e26]:
+              - spinbutton "Land / Lot Area" [ref=e27]: "60"
+              - generic: m²
+            - generic [ref=e28]: Usable parcel footprint
+          - generic [ref=e29]:
+            - generic [ref=e30]: Frontage Width
+            - generic [ref=e31]:
+              - spinbutton "Frontage Width" [ref=e32]: "4"
+              - generic: m
+            - generic [ref=e33]: Property street-facing width
+          - generic [ref=e34]:
+            - generic [ref=e35]: Access Road Width
+            - generic [ref=e36]:
+              - spinbutton "Access Road Width" [ref=e37]: "4"
+              - generic: m
+            - generic [ref=e38]: Street or alleyway width
+          - generic [ref=e39]:
+            - generic [ref=e40]: Number of Floors
+            - generic [ref=e41]:
+              - spinbutton "Number of Floors" [ref=e42]: "1"
+              - generic: floors
+            - generic [ref=e43]: Total built vertical levels
+          - generic [ref=e44]:
+            - generic [ref=e45]: Bedrooms
+            - generic [ref=e46]:
+              - spinbutton "Bedrooms" [ref=e47]: "2"
+              - generic: rooms
+            - generic [ref=e48]: Designated sleeping rooms
+          - generic [ref=e49]:
+            - generic [ref=e50]: Bathrooms
+            - generic [ref=e51]:
+              - spinbutton "Bathrooms" [ref=e52]: "1"
+              - generic: rooms
+            - generic [ref=e53]: Sanitary / washroom count
+          - generic [ref=e54]:
+            - generic [ref=e55]: Province / Municipality
+            - combobox "Province / Municipality" [ref=e57] [cursor=pointer]:
+              - option "Hồ Chí Minh"
+              - option "Hà Nội"
+              - option "Bình Dương" [selected]
+              - option "Đà Nẵng"
+              - option "Đồng Nai"
+              - option "Hải Phòng"
+              - option "Khánh Hòa"
+              - option "Hưng Yên"
+              - option "Long An"
+              - option "Bà Rịa Vũng Tàu"
+              - option "Other Region"
+            - generic [ref=e58]: Regional real estate market
+          - generic [ref=e59]:
+            - generic [ref=e60]: Legal Status
+            - combobox "Legal Status" [ref=e62] [cursor=pointer]:
+              - option "Have certificate (Sổ hồng / Sổ đỏ)" [selected]
+              - option "Sale contract (Hợp đồng mua bán)"
+              - option "Unspecified / In Progress"
+            - generic [ref=e63]: Ownership documentation
+        - button "Estimate Property Value" [ref=e65] [cursor=pointer]
+    - generic [ref=e67]:
+      - generic [ref=e68]:
+        - heading "Valuation Result & Analysis" [level=2] [ref=e69]
+        - generic [ref=e70]: Gradient Boosting Regressor Champion
+      - generic [ref=e82]:
+        - generic [ref=e83]:
+          - generic [ref=e84]:
+            - generic [ref=e85]: "Estimated Fair Market Value:"
+            - generic [ref=e86]: High Confidence
+          - generic [ref=e87]:
+            - generic [ref=e88]: 2.358 Billion VND
+            - generic [ref=e89]: ≈ 2,358,126,636 ₫
+        - generic [ref=e90]:
+          - generic [ref=e91]:
+            - generic [ref=e92]: Unit Price per m²
+            - generic [ref=e93]: 39.30 M/m²
+            - generic [ref=e94]: Million VND / m² usable area
+          - generic [ref=e95]:
+            - generic [ref=e96]: Valuation Confidence Range
+            - generic [ref=e97]: 0.77B - 3.94B
+            - generic [ref=e98]: Empirical 68% confidence band derived from test RMSE (±1.58 Billion VND).
+        - generic [ref=e99]:
+          - heading "Pipeline Feature Transformations" [level=3] [ref=e100]
+          - generic [ref=e101]:
+            - generic [ref=e102]:
+              - generic [ref=e103]: "Total Usable Floor Space:"
+              - strong [ref=e104]: 60.0 m²
+            - generic [ref=e105]:
+              - generic [ref=e106]: "Bed-to-Bath Harmony:"
+              - strong [ref=e107]: "1.00"
+            - generic [ref=e108]:
+              - generic [ref=e109]: "Room Spatial Density:"
+              - strong [ref=e110]: "0.0500"
+        - generic [ref=e111]:
+          - heading "Valuation Basis Summary" [level=3] [ref=e112]
+          - generic [ref=e113]:
+            - generic [ref=e128]:
+              - text: "Location:"
+              - strong [ref=e129]: Bình Dương
+            - generic [ref=e130]:
+              - text: "Area:"
+              - strong [ref=e131]: 60 m²
+            - generic [ref=e132]:
+              - text: "Frontage:"
+              - strong [ref=e133]: 4 m
+            - generic [ref=e134]:
+              - text: "Access Road:"
+              - strong [ref=e135]: 4 m
+            - generic [ref=e136]:
+              - text: "Floors:"
+              - strong [ref=e137]: "1"
+            - generic [ref=e138]:
+              - text: "Beds / Baths:"
+              - strong [ref=e139]: 2 / 1
+            - generic [ref=e140]:
+              - text: "Legal:"
+              - strong [ref=e141]: Have certificate
+  - contentinfo [ref=e74]:
+    - paragraph [ref=e75]: "Intelligence System Development · Assignment 02 · Application 2: House Price Prediction"
+    - generic [ref=e76]:
+      - link "Interactive Swagger Docs (OpenAPI)" [ref=e77] [cursor=pointer]:
+        - /url: /docs
+      - generic [ref=e78]: ·
+      - link "API Healthcheck" [ref=e79] [cursor=pointer]:
+        - /url: /health
+      - generic [ref=e80]: ·
+      - link "Model Metadata" [ref=e81] [cursor=pointer]:
+        - /url: /model-info

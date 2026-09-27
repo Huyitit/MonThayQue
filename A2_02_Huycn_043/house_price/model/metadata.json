@@ -1,0 +1,63 @@
+{
+  "application": "Application 2: House Price Prediction",
+  "domain": "Residential Real Estate Valuation (Vietnam)",
+  "course": "Intelligence Systems (Year 4, Semester 1)",
+  "assignment": "Assignment 02 — Intelligent Applications Lifecycle",
+  "stage": 3,
+  "created_at": "2026-09-07 21:26:17",
+  "champion_model": "Gradient Boosting Regressor",
+  "hyperparameters": {
+    "n_estimators": 100,
+    "max_depth": 5,
+    "learning_rate": 0.1,
+    "random_state": 42
+  },
+  "input_features": {
+    "numerical": [
+      "Area",
+      "Frontage",
+      "Access Road",
+      "Floors",
+      "Bedrooms",
+      "Bathrooms"
+    ],
+    "categorical": [
+      "Province_City",
+      "Legal status"
+    ],
+    "total_raw_count": 8
+  },
+  "engineered_features": [
+    "Total_Floor_Area",
+    "Bed_Bath_Ratio",
+    "Room_Density"
+  ],
+  "transformed_feature_dimension": 23,
+  "target": {
+    "name": "Price",
+    "unit": "Billion VND",
+    "type": "Continuous Regression"
+  },
+  "metrics": {
+    "train_r2": 0.540374037102268,
+    "test_r2": 0.4884402257829782,
+    "generalization_gap": 0.05193381131928976,
+    "test_mae_billion_vnd": 1.242216228984535,
+    "test_rmse_billion_vnd": 1.583830425570823,
+    "test_mse": 2.508518816963855
+  },
+  "top_provinces": [
+    "Hồ Chí Minh",
+    "Hà Nội",
+    "Bình Dương",
+    "Đà Nẵng",
+    "Đồng Nai",
+    "Hải Phòng",
+    "Khánh Hòa",
+    "Hưng Yên",
+    "Long An",
+    "Bà Rịa Vũng Tàu"
+  ],
+  "serialization_framework": "joblib",
+  "scikit_learn_version": "1.5.3"
+}

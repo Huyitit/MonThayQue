@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HouseVal AI | Vietnam Residential Real Estate Valuation</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="header-badge">Intelligent System · Stage 4 Deployment</div>
+        <h1 class="header-title">HouseVal AI</h1>
+        <p class="header-subtitle">
+          Residential Real Estate Valuation & Decision Support (Vietnam)
+        </p>
+      </div>
+      <div class="header-status">
+        <span class="status-indicator online" id="statusIndicator"></span>
+        <span class="status-text" id="statusText">Connecting API...</span>
+      </div>
+    </header>
+
+    <!-- Preset Selection Bar -->
+    <div class="presets-bar">
+      <span class="presets-label">⚡ Quick Presets:</span>
+      <div class="preset-buttons">
+        <button type="button" class="btn-preset active" data-preset="hcmc">HCMC Townhouse</button>
+        <button type="button" class="btn-preset" data-preset="hanoi">Hanoi Suburban Villa</button>
+        <button type="button" class="btn-preset" data-preset="binhduong">Bình Dương Rowhouse</button>
+      </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <main class="main-layout">
+      <!-- Input Form Card -->
+      <section class="card form-card">
+        <div class="card-header">
+          <h2>Property Specifications</h2>
+          <p class="section-desc">Enter physical and geographical attributes of the residential listing.</p>
+        </div>
+
+        <form id="valuationForm" class="valuation-form" novalidate>
+          <div class="form-grid">
+            <!-- Area -->
+            <div class="form-group">
+              <label for="area">Land / Lot Area</label>
+              <div class="input-wrapper">
+                <input type="number" id="area" name="Area" min="10" max="2000" step="0.5" value="75.0" placeholder="e.g. 75.0" required />
+                <span class="unit">m²</span>
+              </div>
+              <small class="field-hint">Usable parcel footprint</small>
+            </div>
+
+            <!-- Frontage -->
+            <div class="form-group">
+              <label for="frontage">Frontage Width</label>
+              <div class="input-wrapper">
+                <input type="number" id="frontage" name="Frontage" min="1.0" max="100.0" step="0.1" value="4.5" placeholder="e.g. 4.5" required />
+                <span class="unit">m</span>
+              </div>
+              <small class="field-hint">Property street-facing width</small>
+            </div>
+
+            <!-- Access Road -->
+            <div class="form-group">
+              <label for="accessRoad">Access Road Width</label>
+              <div class="input-wrapper">
+                <input type="number" id="accessRoad" name="Access Road" min="0.5" max="100.0" step="0.1" value="6.0" placeholder="e.g. 6.0" required />
+                <span class="unit">m</span>
+              </div>
+              <small class="field-hint">Street or alleyway width</small>
+            </div>
+
+            <!-- Floors -->
+            <div class="form-group">
+              <label for="floors">Number of Floors</label>
+              <div class="input-wrapper">
+                <input type="number" id="floors" name="Floors" min="1" max="50" step="1" value="3.0" placeholder="e.g. 3" required />
+                <span class="unit">floors</span>
+              </div>
+              <small class="field-hint">Total built vertical levels</small>
+            </div>
+
+            <!-- Bedrooms -->
+            <div class="form-group">
+              <label for="bedrooms">Bedrooms</label>
+              <div class="input-wrapper">
+                <input type="number" id="bedrooms" name="Bedrooms" min="1" max="30" step="1" value="3.0" placeholder="e.g. 3" required />
+                <span class="unit">rooms</span>
+              </div>
+              <small class="field-hint">Designated sleeping rooms</small>
+            </div>
+
+            <!-- Bathrooms -->
+            <div class="form-group">
+              <label for="bathrooms">Bathrooms</label>
+              <div class="input-wrapper">
+                <input type="number" id="bathrooms" name="Bathrooms" min="1" max="30" step="1" value="3.0" placeholder="e.g. 3" required />
+                <span class="unit">rooms</span>
+              </div>
+              <small class="field-hint">Sanitary / washroom count</small>
+            </div>
+
+            <!-- Province / City -->
+            <div class="form-group">
+              <label for="provinceCity">Province / Municipality</label>
+              <div class="input-wrapper">
+                <select id="provinceCity" name="Province_City" required>
+                  <option value="Hồ Chí Minh" selected>Hồ Chí Minh</option>
+                  <option value="Hà Nội">Hà Nội</option>
+                  <option value="Bình Dương">Bình Dương</option>
+                  <option value="Đà Nẵng">Đà Nẵng</option>
+                  <option value="Đồng Nai">Đồng Nai</option>
+                  <option value="Hải Phòng">Hải Phòng</option>
+                  <option value="Khánh Hòa">Khánh Hòa</option>
+                  <option value="Hưng Yên">Hưng Yên</option>
+                  <option value="Long An">Long An</option>
+                  <option value="Bà Rịa Vũng Tàu">Bà Rịa Vũng Tàu</option>
+                  <option value="Other">Other Region</option>
+                </select>
+              </div>
+              <small class="field-hint">Regional real estate market</small>
+            </div>
+
+            <!-- Legal Status -->
+            <div class="form-group">
+              <label for="legalStatus">Legal Status</label>
+              <div class="input-wrapper">
+                <select id="legalStatus" name="Legal status" required>
+                  <option value="Have certificate" selected>Have certificate (Sổ hồng / Sổ đỏ)</option>
+                  <option value="Sale contract">Sale contract (Hợp đồng mua bán)</option>
+                  <option value="Unspecified">Unspecified / In Progress</option>
+                </select>
+              </div>
+              <small class="field-hint">Ownership documentation</small>
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <div class="form-actions">
+            <button type="submit" id="submitBtn" class="btn-primary">
+              <span class="btn-text">Estimate Property Value</span>
+              <span class="btn-loader spinner hidden" id="spinner"></span>
+            </button>
+          </div>
+        </form>
+
+        <div id="errorAlert" class="alert alert-error hidden">
+          <span class="alert-icon">⚠️</span>
+          <span id="errorMessage" class="alert-text"></span>
+        </div>
+      </section>
+
+      <!-- Valuation Result Card -->
+      <section class="card result-card" id="resultSection">
+        <div class="card-header">
+          <h2>Valuation Result & Analysis</h2>
+          <span class="badge badge-model" id="modelBadge">Gradient Boosting Champion</span>
+        </div>
+
+        <!-- Placeholder when no prediction run yet -->
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">🏡</div>
+          <p>Submit property specifications on the left to evaluate estimated market value.</p>
+        </div>
+
+        <!-- Active Result View -->
+        <div class="result-content hidden" id="resultContent">
+          <!-- Primary Outcome Banner -->
+          <div class="outcome-banner" id="outcomeBanner">
+            <div class="outcome-header">
+              <span class="outcome-label">Estimated Fair Market Value:</span>
+              <span class="risk-badge" id="valuationStatusBadge">High Confidence</span>
+            </div>
+            <div class="outcome-price-wrap">
+              <div class="outcome-classification" id="predictedPriceValue">0.000 Billion VND</div>
+              <div class="outcome-vnd" id="formattedVndValue">0 ₫</div>
+            </div>
+          </div>
+
+          <!-- Valuation Range & Price per m2 -->
+          <div class="metrics-container">
+            <div class="metric-box">
+              <div class="metric-label">Unit Price per m²</div>
+              <div class="metric-value" id="pricePerM2Value">0.00 M/m²</div>
+              <div class="metric-subtext" id="unitPriceSubtext">Million VND / m² usable area</div>
+            </div>
+
+            <div class="metric-box">
+              <div class="metric-label">Valuation Confidence Range</div>
+              <div class="metric-value" id="rangeIntervalValue">0.00B - 0.00B</div>
+              <div class="metric-subtext" id="rangeNote">±1.58B VND (68% RMSE band)</div>
+            </div>
+          </div>
+
+          <!-- Domain Feature Engineering Breakdown -->
+          <div class="engineered-box">
+            <h3>Pipeline Feature Transformations</h3>
+            <div class="feature-pills">
+              <div class="pill">
+                <span class="pill-name">Total Usable Floor Space:</span>
+                <strong class="pill-val" id="totalFloorAreaVal">0.0 m²</strong>
+              </div>
+              <div class="pill">
+                <span class="pill-name">Bed-to-Bath Harmony:</span>
+                <strong class="pill-val" id="bedBathRatioVal">0.00</strong>
+              </div>
+              <div class="pill">
+                <span class="pill-name">Room Spatial Density:</span>
+                <strong class="pill-val" id="roomDensityVal">0.0000</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listing Summary Recap -->
+          <div class="recap-box">
+            <h3>Valuation Basis Summary</h3>
+            <div class="recap-grid" id="recapGrid">
+              <!-- Dynamically filled by app.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Intelligence System Development · Assignment 02 · Application 2: House Price Prediction</p>
+      <div class="api-links">
+        <a href="/docs" target="_blank" rel="noopener">Interactive Swagger Docs (OpenAPI)</a>
+        <span>·</span>
+        <a href="/health" target="_blank" rel="noopener">API Healthcheck</a>
+        <span>·</span>
+        <a href="/model-info" target="_blank" rel="noopener">Model Metadata</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

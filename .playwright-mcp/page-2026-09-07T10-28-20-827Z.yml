@@ -1,0 +1,131 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: Intelligent System · Stage 4 Deployment
+      - heading "RetailSense AI" [level=1] [ref=e6]
+      - paragraph [ref=e7]: E-Commerce Multimodal Customer Behavior & Department Interest Discovery
+    - generic [ref=e8]: API Connected
+  - region "Customer Profile Presets" [ref=e11]:
+    - generic [ref=e12]: "⚡ Quick Presets:"
+    - generic [ref=e13]:
+      - button "👗 Dresses Fanatic" [ref=e14] [cursor=pointer]
+      - button "👖 Denim & Bottoms" [ref=e15] [cursor=pointer]
+      - button "🧥 Winter Outerwear" [ref=e16] [cursor=pointer]
+      - button "👙 Intimates & Sleep" [ref=e17] [cursor=pointer]
+      - button "👚 Summer Blouse" [ref=e18] [cursor=pointer]
+  - main [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - heading "Customer Engagement & Review" [level=2] [ref=e22]
+        - paragraph [ref=e23]: Provide customer demographics, feedback signals, and textual review data.
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - generic [ref=e27]: Customer Age
+            - generic [ref=e28]:
+              - spinbutton "Customer Age" [ref=e29]: "32"
+              - generic: years
+            - generic [ref=e30]: Demographic age bracket (18-100)
+          - generic [ref=e31]:
+            - generic [ref=e32]: Product Rating
+            - combobox "Product Rating" [ref=e34] [cursor=pointer]:
+              - option "★★★★★ (5 - Excellent)" [selected]
+              - option "★★★★☆ (4 - Very Good)"
+              - option "★★★☆☆ (3 - Average)"
+              - option "★★☆☆☆ (2 - Poor)"
+              - option "★☆☆☆☆ (1 - Terrible)"
+            - generic [ref=e35]: Customer satisfaction rating
+          - generic [ref=e36]:
+            - generic [ref=e37]: Recommendation
+            - combobox "Recommendation" [ref=e39] [cursor=pointer]:
+              - option "👍 Yes (Recommends item)" [selected]
+              - option "👎 No (Does not recommend)"
+            - generic [ref=e40]: Willingness to recommend
+          - generic [ref=e41]:
+            - generic [ref=e42]: Helpful Upvotes
+            - generic [ref=e43]:
+              - spinbutton "Helpful Upvotes" [ref=e44]: "4"
+              - generic: votes
+            - generic [ref=e45]: Community upvotes on review
+        - generic [ref=e46]:
+          - generic [ref=e47]:
+            - generic [ref=e48]: Review Headline / Title
+            - textbox "Review Headline / Title" [ref=e50]:
+              - /placeholder: e.g. Gorgeous fit and lovely color
+              - text: Stunning summer maxi dress
+            - generic [ref=e51]: Summary headline (optional but provides NLP signal)
+          - generic [ref=e52]:
+            - generic [ref=e53]:
+              - generic [ref=e54]: Review Narrative *
+              - generic [ref=e55]: 14 words · 86 chars
+            - textbox "Review Narrative *" [ref=e57]:
+              - /placeholder: Write customer feedback, style observations, fit notes, fabric comments...
+              - text: This dress fits like a glove! Beautiful floral fabric and perfect length for weddings.
+            - generic [ref=e58]: Unstructured customer text processed by TF-IDF sublinear vectorizer
+        - button "Discover Product Interest" [ref=e60] [cursor=pointer]
+    - generic [ref=e62]:
+      - generic [ref=e63]:
+        - heading "Interest Discovery & Profiling" [level=2] [ref=e64]
+        - generic [ref=e65]: Multimodal LR Champion
+      - generic [ref=e77]:
+        - generic [ref=e78]:
+          - generic [ref=e79]:
+            - generic [ref=e80]: "Predicted Interest Department:"
+            - generic [ref=e81]: High-Intent Brand Promoter
+          - generic [ref=e82]:
+            - generic [ref=e83]: 👗
+            - generic [ref=e84]: Dresses
+        - generic [ref=e87]:
+          - generic [ref=e88]: Model Confidence
+          - generic [ref=e89]: 99.9%
+        - generic [ref=e92]:
+          - heading "Department Probability Distribution" [level=3] [ref=e93]
+          - paragraph [ref=e94]: "Multinomial Softmax posterior probabilities over all 5 departments:"
+          - generic [ref=e95]:
+            - generic [ref=e97]:
+              - generic [ref=e98]: 👗 Dresses
+              - generic [ref=e99]: 99.9%
+            - generic [ref=e103]:
+              - generic [ref=e104]: 👙 Intimate
+              - generic [ref=e105]: 0.1%
+            - generic [ref=e109]:
+              - generic [ref=e110]: 👖 Bottoms
+              - generic [ref=e111]: 0.0%
+            - generic [ref=e114]:
+              - generic [ref=e115]: 🧥 Jackets
+              - generic [ref=e116]: 0.0%
+            - generic [ref=e119]:
+              - generic [ref=e120]: 👚 Tops
+              - generic [ref=e121]: 0.0%
+        - generic [ref=e123]:
+          - heading "Personalized Retail Strategy" [level=3] [ref=e124]
+          - paragraph [ref=e125]: Customer expresses strong enthusiasm for 'Dresses'. Recommend deploying VIP early-access promotions, personalized Dresses catalog lookbooks, and loyalty reward bonuses.
+        - generic [ref=e126]:
+          - heading "Pipeline Feature Transformations" [level=3] [ref=e127]
+          - generic [ref=e128]:
+            - generic [ref=e129]:
+              - generic [ref=e130]: "Word Count:"
+              - strong [ref=e131]: "14"
+            - generic [ref=e132]:
+              - generic [ref=e133]: "Char Length:"
+              - strong [ref=e134]: "86"
+            - generic [ref=e135]:
+              - generic [ref=e136]: "Log Upvotes:"
+              - strong [ref=e137]: "1.61"
+            - generic [ref=e138]:
+              - generic [ref=e139]: "Uppercase Ratio:"
+              - strong [ref=e140]: 2.3%
+            - generic [ref=e141]:
+              - generic [ref=e142]: "Has Title:"
+              - strong [ref=e143]: "Yes"
+  - contentinfo [ref=e69]:
+    - paragraph [ref=e70]: "Intelligence System Development · Assignment 02 · Application 3: E-Commerce Customer Behavior"
+    - generic [ref=e71]:
+      - link "Interactive Swagger Docs (OpenAPI)" [ref=e72] [cursor=pointer]:
+        - /url: /docs
+      - generic [ref=e73]: ·
+      - link "API Healthcheck" [ref=e74] [cursor=pointer]:
+        - /url: /health
+      - generic [ref=e75]: ·
+      - link "Model Metadata" [ref=e76] [cursor=pointer]:
+        - /url: /model-info

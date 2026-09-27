@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VN House Price Predictor - Simple Intelligent Valuation</title>
+    <!-- Modern typography from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>VN House Price Predictor</h1>
+            <p>Enter house characteristics to calculate predicted market price</p>
+        </header>
+
+        <!-- Main Form & Result Side-by-Side Grid -->
+        <section class="calculator-section grid-2">
+            <!-- Input Form Card -->
+            <div class="card">
+                <h2>Property Characteristics</h2>
+                <p class="section-desc">Select and enter the features below to valuate the house.</p>
+                <form id="prediction-form" class="property-form">
+                    
+                    <!-- Location Fields -->
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="City_Province">City / Province</label>
+                            <select id="City_Province" name="City_Province" required>
+                                <option value="">-- Select City/Province --</option>
+                                <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                                <option value="Hà Nội">Hà Nội</option>
+                                <option value="Bình Dương">Bình Dương</option>
+                                <option value="Đà Nẵng">Đà Nẵng</option>
+                                <option value="Đồng Nai">Đồng Nai</option>
+                                <option value="Unknown">Unknown</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="District">District</label>
+                            <select id="District" name="District" required>
+                                <option value="">-- Select District --</option>
+                                <option value="Gò Vấp">Gò Vấp</option>
+                                <option value="Hà Đông">Hà Đông</option>
+                                <option value="Long Biên">Long Biên</option>
+                                <option value="Bình Tân">Bình Tân</option>
+                                <option value="Thủ Đức">Thủ Đức</option>
+                                <option value="Hoàng Mai">Hoàng Mai</option>
+                                <option value="Tân Phú">Tân Phú</option>
+                                <option value="Đống Đa">Đống Đa</option>
+                                <option value="Quận 12">Quận 12</option>
+                                <option value="Bình Thạnh">Bình Thạnh</option>
+                                <option value="Tân Bình">Tân Bình</option>
+                                <option value="Nam Từ Liêm">Nam Từ Liêm</option>
+                                <option value="Quận 1">Quận 1</option>
+                                <option value="Liên Chiểu">Liên Chiểu</option>
+                                <option value="Unknown">Unknown</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Numeric Parameters -->
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="Area">Area (m²)</label>
+                            <input type="number" id="Area" name="Area" required min="1" step="any" placeholder="e.g., 85">
+                        </div>
+                        <div class="form-group">
+                            <label for="Frontage">Frontage Width (m)</label>
+                            <input type="number" id="Frontage" name="Frontage" min="0" step="any" placeholder="e.g., 5">
+                        </div>
+                        <div class="form-group">
+                            <label for="Access Road">Access Road Width (m)</label>
+                            <input type="number" id="Access Road" name="Access Road" min="0" step="any" placeholder="e.g., 4">
+                        </div>
+                        <div class="form-group">
+                            <label for="Floors">Total Floors</label>
+                            <input type="number" id="Floors" name="Floors" min="1" step="any" placeholder="e.g., 3">
+                        </div>
+                        <div class="form-group">
+                            <label for="Bedrooms">Bedrooms</label>
+                            <input type="number" id="Bedrooms" name="Bedrooms" min="1" step="any" placeholder="e.g., 3">
+                        </div>
+                        <div class="form-group">
+                            <label for="Bathrooms">Bathrooms</label>
+                            <input type="number" id="Bathrooms" name="Bathrooms" min="1" step="any" placeholder="e.g., 3">
+                        </div>
+                    </div>
+
+                    <!-- Categorical Dropdowns -->
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="House direction">House Direction</label>
+                            <select id="House direction" name="House direction">
+                                <option value="Unknown">Unknown</option>
+                                <option value="Đông">Đông (East)</option>
+                                <option value="Tây">Tây (West)</option>
+                                <option value="Nam">Nam (South)</option>
+                                <option value="Bắc">Bắc (North)</option>
+                                <option value="Đông - Nam">Đông - Nam (Southeast)</option>
+                                <option value="Đông - Bắc">Đông - Bắc (Northeast)</option>
+                                <option value="Tây - Nam">Tây - Nam (Southwest)</option>
+                                <option value="Tây - Bắc">Tây - Bắc (Northwest)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Balcony direction">Balcony Direction</label>
+                            <select id="Balcony direction" name="Balcony direction">
+                                <option value="Unknown">Unknown</option>
+                                <option value="Đông">Đông (East)</option>
+                                <option value="Tây">Tây (West)</option>
+                                <option value="Nam">Nam (South)</option>
+                                <option value="Bắc">Bắc (North)</option>
+                                <option value="Đông - Nam">Đông - Nam (Southeast)</option>
+                                <option value="Đông - Bắc">Đông - Bắc (Northeast)</option>
+                                <option value="Tây - Nam">Tây - Nam (Southwest)</option>
+                                <option value="Tây - Bắc">Tây - Bắc (Northwest)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Legal status">Legal Status</label>
+                            <select id="Legal status" name="Legal status">
+                                <option value="Unknown">Unknown</option>
+                                <option value="Have certificate">Have Certificate (Sổ đỏ/hồng)</option>
+                                <option value="Sale contract">Sale Contract (Hợp đồng mua bán)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Furniture state">Furniture State</label>
+                            <select id="Furniture state" name="Furniture state">
+                                <option value="Unknown">Unknown</option>
+                                <option value="Full">Full Furniture</option>
+                                <option value="Basic">Basic Furniture</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit" id="btn-submit">
+                        Valuate House
+                    </button>
+                </form>
+            </div>
+
+            <!-- Prediction Result Card Column -->
+            <div class="results-column">
+                <div class="card result-card" id="result-card">
+                    <div class="result-placeholder" id="result-placeholder">
+                        <p>Fill out the characteristics and click "Valuate House" to get a prediction.</p>
+                    </div>
+                    <div class="result-display hidden" id="result-display">
+                        <h3>Estimated Property Value</h3>
+                        <div class="price-billion" id="price-billion">0.000 Billion VND</div>
+                        <div class="price-formatted" id="price-formatted">0 VND</div>
+                        <div class="prediction-info">
+                            <span>Log prediction: <strong id="pred-log">0.000000</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/index.js"></script>
+</body>
+</html>
