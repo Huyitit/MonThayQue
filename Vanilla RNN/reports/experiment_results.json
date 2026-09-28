@@ -1,0 +1,174 @@
+{
+  "dataset": {
+    "total_reviews": 50000,
+    "train_reviews": 25000,
+    "test_reviews": 25000,
+    "pos_count": 25000,
+    "neg_count": 25000,
+    "mean_length": 231.15694,
+    "median_length": 173.0,
+    "std_length": 171.3422838351246,
+    "min_length": 4,
+    "max_length": 2470,
+    "vocab_size": 1000,
+    "seq_len": 250
+  },
+  "model": {
+    "architecture": "Vanilla SimpleRNN",
+    "embedding_dim": 64,
+    "hidden_units": 64,
+    "batch_size": 64,
+    "learning_rate": 0.0001,
+    "epochs": 10,
+    "total_params": 72321,
+    "layers": [
+      {
+        "name": "text_vectorization",
+        "type": "TextVectorization",
+        "trainable": 0
+      },
+      {
+        "name": "embedding",
+        "type": "Embedding",
+        "trainable": 64000
+      },
+      {
+        "name": "simple_rnn",
+        "type": "SimpleRNN",
+        "trainable": 8256
+      },
+      {
+        "name": "dense",
+        "type": "Dense",
+        "trainable": 65
+      }
+    ]
+  },
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6351462006568909,
+      "train_accuracy": 0.631879985332489,
+      "val_loss": 0.5300552845001221,
+      "val_accuracy": 0.777400016784668
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.46910786628723145,
+      "train_accuracy": 0.7943999767303467,
+      "val_loss": 0.5464397072792053,
+      "val_accuracy": 0.7216399908065796
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.408835232257843,
+      "train_accuracy": 0.8283200263977051,
+      "val_loss": 0.4129437208175659,
+      "val_accuracy": 0.823639988899231
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.37575042247772217,
+      "train_accuracy": 0.8450800180435181,
+      "val_loss": 0.38153722882270813,
+      "val_accuracy": 0.8356800079345703
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.35552483797073364,
+      "train_accuracy": 0.8518800139427185,
+      "val_loss": 0.40837937593460083,
+      "val_accuracy": 0.8285199999809265
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.34194862842559814,
+      "train_accuracy": 0.860040009021759,
+      "val_loss": 0.38188719749450684,
+      "val_accuracy": 0.8315200209617615
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.33292120695114136,
+      "train_accuracy": 0.861519992351532,
+      "val_loss": 0.37819862365722656,
+      "val_accuracy": 0.8319200277328491
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.3260630965232849,
+      "train_accuracy": 0.8652399778366089,
+      "val_loss": 0.4030594229698181,
+      "val_accuracy": 0.8352000117301941
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.3180934190750122,
+      "train_accuracy": 0.867680013179779,
+      "val_loss": 0.3627571165561676,
+      "val_accuracy": 0.840399980545044
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.3116934895515442,
+      "train_accuracy": 0.869159996509552,
+      "val_loss": 0.3723333477973938,
+      "val_accuracy": 0.8365600109100342
+    }
+  ],
+  "test_metrics": {
+    "accuracy": 0.83656,
+    "precision": 0.8,
+    "recall": 0.8968997837058399,
+    "f1_score": 0.8456832087015635,
+    "roc_auc": 0.9192952491284929,
+    "tn": 9718,
+    "fp": 2799,
+    "fn": 1287,
+    "tp": 11196
+  },
+  "sample_predictions": [
+    {
+      "category": "True Positive (TP)",
+      "snippet": "After seeing 'Break a Leg' in Vancouver at the release party I thought it was a very enjoyable film. I had a few outright belly...",
+      "true_label": 1,
+      "pred_prob": 0.9665841460227966,
+      "pred_label": 1
+    },
+    {
+      "category": "True Positive (TP)",
+      "snippet": "I enjoyed Longstreet, which followed in the steps of Raymond Burr's successful Ironside TV series and was intended to give it c...",
+      "true_label": 1,
+      "pred_prob": 0.8325731754302979,
+      "pred_label": 1
+    },
+    {
+      "category": "True Negative (TN)",
+      "snippet": "Wow, here it finally is; the action \"movie\" without action. In a real low-budget setting (don't miss the hilarious flying sauce...",
+      "true_label": 0,
+      "pred_prob": 0.02141575515270233,
+      "pred_label": 0
+    },
+    {
+      "category": "True Negative (TN)",
+      "snippet": "\"Sir\" John Gielgud must have become senile to star in a mess of a movie like this one.; This is one of those films, I suppose, ...",
+      "true_label": 0,
+      "pred_prob": 0.22583413124084473,
+      "pred_label": 0
+    },
+    {
+      "category": "False Positive (FP - Error)",
+      "snippet": "\"Congo\" is based on the best-selling novel by Michael Crichton, which I thought lacked Crichton's usual charm, smart characters...",
+      "true_label": 0,
+      "pred_prob": 0.9216301441192627,
+      "pred_label": 1
+    },
+    {
+      "category": "False Negative (FN - Error)",
+      "snippet": "'Identity\u0096 . . . . I am part of my surroundings and I became separate from them and it's being able to make those differentiati...",
+      "true_label": 1,
+      "pred_prob": 0.34172511100769043,
+      "pred_label": 0
+    }
+  ]
+}
